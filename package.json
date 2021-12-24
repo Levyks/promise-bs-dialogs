@@ -1,0 +1,23 @@
+{
+  "name": "promise-bs-dialogs",
+  "version": "0.0.1",
+  "description": "Simple library that allows you to easily create confirm/alert dialogs using Bootstrap",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc -p ."
+  },
+  "keywords": [
+    "dialog",
+    "confirm",
+    "alert",
+    "modal",
+    "bootstrap"
+  ],
+  "author": "Levy Barbosa <marcio.levy20@gmail.com>",
+  "license": "GPLv3",
+  "devDependencies": {
+    "@types/bootstrap": "^5.1.6",
+    "typescript": "^4.5.4"
+  }
+}
