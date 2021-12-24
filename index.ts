@@ -4,6 +4,8 @@ export interface ModalOptions {
   message?: string;
   centered?: boolean;
 
+  size?: 'small' | 'default' | 'large' | 'extra-large';
+
   fade?: boolean;
 
   closeOnBackdropClick?: boolean;
@@ -32,7 +34,7 @@ function mergeDefaults<T extends Object>(defaults: T, options?: T): T {
 }
 
 function createModal(options: ModalOptions, footerElements?: HTMLElement[]): CustomModal {
-  
+
   const wrapper = document.createElement('div');
   wrapper.className = 'modal ';
   if(options.fade) wrapper.className += ' fade'; 
@@ -41,7 +43,20 @@ function createModal(options: ModalOptions, footerElements?: HTMLElement[]): Cus
 
   const dialog = document.createElement('div');
   dialog.className = 'modal-dialog ';
-  if(options.centered) dialog.className += 'modal-dialog-centered';
+  if(options.centered) dialog.className += 'modal-dialog-centered ';
+
+  switch(options.size) {
+    case 'small':
+      dialog.className += 'modal-sm';
+      break;
+    case 'large':
+      dialog.className += 'modal-lg';
+      break;
+    case 'extra-large':
+      dialog.className += 'modal-xl';
+      break;
+  }
+
   wrapper.appendChild(dialog);
 
   const content = document.createElement('div');
@@ -92,6 +107,7 @@ function confirm(arg1?: ConfirmOptions | string): Promise<boolean> {
 
   let options: ConfirmOptions = typeof arg1 === 'string' ? {
     title: arg1,
+    size: 'small',
     message: '',
   }: arg1;
 
@@ -100,6 +116,7 @@ function confirm(arg1?: ConfirmOptions | string): Promise<boolean> {
     message: 'Are you sure you want to do this?',
     centered: true,
     fade: true,
+    size: 'default',
 
     cancelText: 'Cancel',
     cancelClass: 'btn-secondary',
@@ -148,6 +165,8 @@ function alert(arg1?: AlertOptions | string): Promise<void> {
   
   let options: AlertOptions = typeof arg1 === 'string' ? {
     title: arg1,
+    size: 'small',
+    message: '',
   } : arg1;
   
   const defaults: AlertOptions = {
@@ -155,6 +174,7 @@ function alert(arg1?: AlertOptions | string): Promise<void> {
     message: '',
     centered: true,
     fade: true,
+    size: 'default',
 
     okText: 'OK',
     okClass: 'btn-primary',
