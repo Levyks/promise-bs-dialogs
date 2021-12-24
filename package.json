@@ -1,7 +1,7 @@
 {
   "name": "promise-bs-dialogs",
   "version": "0.0.1",
-  "description": "Simple library that allows you to easily create confirm/alert dialogs using Bootstrap",
+  "description": "Simple library that allows you to easily create promise-based confirm/alert dialogs using Bootstrap",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
